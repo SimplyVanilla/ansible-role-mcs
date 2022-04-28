@@ -1,11 +1,31 @@
 ---
 
-- name: get latest paper build
+- name: create folders
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: directory
+  with_items:
+    - '{{ mcs_path }}'
+    - '{{ mcs_path }}/plugins'
+  become: yes
+  become_user: '{{ mcs_user }}'
+
+- name: list paper builds
   ansible.builtin.uri:
     url: https://papermc.io/api/v2/projects/paper/versions/{{ mcs_version }}
     return_content: yes
   register: papermc_api_builds
 
-- name: temp
-  ansible.builtin.debug:
-    msg: '{{ papermc_api_builds }}'
+- name: get latest paper build
+  ansible.builtin.uri:
+    url: https://papermc.io/api/v2/projects/paper/versions/{{ mcs_version }}/builds/{{ papermc_api_builds['json']['builds'] | max }}
+    return_content: yes
+  register: papermc_api_build
+
+- name: download paper
+  ansible.builtin.get_url:
+    url: https://papermc.io/api/v2/projects/paper/versions/{{ mcs_version }}/builds/{{ papermc_api_build['build'] }}/downloads/{{ papermc_api_build['downloads']['application']['name'] }}
+    dest: '{{ mcs_path }}/{{ papermc_api_build['downloads']['application']['name'] }}'
+    checksum: sha256:{{ papermc_api_build['downloads']['application']['sha256'] }}
+  become: yes
+  become_user: '{{ mcs_user }}'
