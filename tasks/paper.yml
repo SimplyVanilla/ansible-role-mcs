@@ -6,5 +6,6 @@
     return_content: yes
   register: papermc_api_versions
 
-- ansible.builtin.debug:
+- name: temp
+  ansible.builtin.debug:
     msg: '{{ papermc_api_versions }}'
