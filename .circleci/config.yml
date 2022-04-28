@@ -11,6 +11,9 @@ jobs:
 
     steps:
       - run: sudo apt remove --assume-yes --purge apparmor
+      - run: wget -O- https://apt.corretto.aws/corretto.key | sudo apt-key add -
+      - run: sudo add-apt-repository 'deb https://apt.corretto.aws stable main'
+      - run: sudo apt update
       - run: sudo useradd -d /home/mcs -m -s /bin/bash mcs
       - run: pip3 install ansible ansible-lint
 
