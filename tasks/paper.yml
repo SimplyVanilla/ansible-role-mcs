@@ -4,11 +4,12 @@
   ansible.builtin.file:
     path: '{{ item }}'
     state: directory
+    owner: '{{ mcs_user }}'
+    group: '{{ mcs_user }}'
   with_items:
     - '{{ mcs_path }}'
     - '{{ mcs_path }}/plugins'
   become: yes
-  become_user: '{{ mcs_user }}'
 
 - name: list paper builds
   ansible.builtin.uri:
