@@ -1,0 +1,20 @@
+[Unit]
+Description=Minecraft Server
+After=network.target
+
+[Service]
+WorkingDirectory=/home/mcs/server
+EnvironmentFile=/etc/default/mcs
+
+User=mcs
+Group=mcs
+
+Restart=always
+RestartSec=5s
+Type=forking
+
+ExecStart=/home/mcs/server.sh start
+ExecStop=/home/mcs/server.sh stop
+
+[Install]
+WantedBy=multi-user.target

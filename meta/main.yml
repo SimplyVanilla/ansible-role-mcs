@@ -1,0 +1,23 @@
+---
+
+galaxy_info:
+  role_name: mcs
+  namespace: simplyvanilla
+  author: Netherwhal
+  description: Install a Minecraft Server (PaperMC) on a Debian-like system.
+  license: GPLv3
+  min_ansible_version: '2.10'
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+        - bionic
+    - name: Debian
+      versions:
+        - bullseye
+        - buster
+  galaxy_tags:
+    - minecraft
+    - papermc
+    - java
+dependencies: []
