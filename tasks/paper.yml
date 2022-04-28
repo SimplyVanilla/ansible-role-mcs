@@ -2,10 +2,10 @@
 
 - name: get latest paper build
   ansible.builtin.uri:
-    url: https://papermc.io/api/v2/projects/paper/versions/{{ mc_version }}
+    url: https://papermc.io/api/v2/projects/paper/versions/{{ mcs_version }}
     return_content: yes
-  register: papermc_api_versions
+  register: papermc_api_builds
 
 - name: temp
   ansible.builtin.debug:
-    msg: '{{ papermc_api_versions }}'
+    msg: '{{ papermc_api_builds }}'
