@@ -25,7 +25,7 @@
 - name: download paper
   ansible.builtin.get_url:
     url: https://papermc.io/api/v2/projects/paper/versions/{{ mcs_version }}/builds/{{ papermc_api_build['build'] }}/downloads/{{ papermc_api_build['downloads']['application']['name'] }}
-    dest: '{{ mcs_path }}/{{ papermc_api_build['downloads']['application']['name'] }}'
+    dest: "{{ mcs_path }}/{{ papermc_api_build['downloads']['application']['name'] }}"
     checksum: sha256:{{ papermc_api_build['downloads']['application']['sha256'] }}
   become: yes
   become_user: '{{ mcs_user }}'
