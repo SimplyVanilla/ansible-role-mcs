@@ -1,5 +1,7 @@
 ---
 
+- ansible.builtin.import_tasks: pre.yml
+
 - ansible.builtin.import_tasks: java.yml
 
 - ansible.builtin.import_tasks: paper.yml
