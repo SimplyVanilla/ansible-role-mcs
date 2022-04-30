@@ -2,6 +2,9 @@
 
 - hosts: localhost
 
+  vars:
+    mcs_heap: 1
+
   tasks:
     - ansible.builtin.import_role:
         name: project

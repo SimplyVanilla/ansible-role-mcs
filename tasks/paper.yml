@@ -27,6 +27,34 @@
   ansible.builtin.get_url:
     url: https://papermc.io/api/v2/projects/paper/versions/{{ mcs_version }}/builds/{{ papermc_api_build['json']['build'] }}/downloads/{{ papermc_api_build['json']['downloads']['application']['name'] }}
     dest: "{{ mcs_path }}/{{ papermc_api_build['json']['downloads']['application']['name'] }}"
-    checksum: sha256:{{ papermc_api_build['json']['downloads']['application']['sha256'] }}
+    checksum: sha256:{{ papermc_api_build.json.downloads.application.sha256 }}
   become: yes
   become_user: '{{ mcs_user }}'
+
+- name: add systemd service
+  ansible.builtin.template:
+    src: mcs.service
+    dest: /lib/systemd/system/mcs.service
+    mode: 0644
+  become: yes
+  notify:
+    - mcs_reload_systemd
+    - mcs_restart
+
+- name: add server.sh
+  ansible.builtin.copy:
+    src: server.sh
+    dest: '{{ mcs_path }}/server.sh'
+    mode: 'a+x'
+  become: yes
+  become_user: '{{ mcs_user }}'
+
+- name: add systemd config
+  ansible.builtin.template:
+    src: default.conf
+    dest: /etc/default/mcs
+    mode: 0644
+  become: yes
+  notify:
+    - mcs_reload_systemd
+    - mcs_restart

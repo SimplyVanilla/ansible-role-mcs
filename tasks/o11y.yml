@@ -1,0 +1,7 @@
+---
+
+- name: fetch jolokia agent
+  ansible.builtin.get_url:
+    url: https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/{{ mcs_jolokia_version }}/jolokia-jvm-{{ mcs_jolokia_version }}.jar
+    dest: /opt/jolokia/jolokia-jvm-{{ mcs_jolokia_version }}.jar
+  become: yes

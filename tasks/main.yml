@@ -5,3 +5,7 @@
 - ansible.builtin.import_tasks: java.yml
 
 - ansible.builtin.import_tasks: paper.yml
+
+- ansible.builtin.import_tasks: config.yml
+
+- ansible.builtin.import_tasks: o11y.yml
