@@ -13,6 +13,7 @@ jobs:
       - run: sudo rm /etc/apt/sources.list.d/google.list /etc/apt/sources.list.d/heroku.list
       - run: sudo apt remove --assume-yes --purge apparmor
       - run: sudo apt update
+      - run: sudo apt install tree
 
       # prep
       - run: sudo useradd -d /home/mcs -m -s /bin/bash mcs
@@ -34,5 +35,7 @@ jobs:
       - run: cat /etc/default/mcs
       - run: sudo journalctl --no-pager --unit=mcs
       - run: sudo systemctl --no-pager -l status mcs
+      - run: tree /home/mcs/server
       - run: while ! sudo -u mcs screen -list mcs; do sleep 1; done
       - run: sudo -u mcs screen -p 0 -S mcs -X eval 'stuff "version"\015'
+      - run: tail /home/mcs/server/logs/latest.log
