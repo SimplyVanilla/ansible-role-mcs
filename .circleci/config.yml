@@ -16,7 +16,7 @@ jobs:
 
       # prep
       - run: sudo useradd -d /home/mcs -m -s /bin/bash mcs
-      - run: sudo -u mcs mkdir -p ~/.ansible/tmp
+      - run: sudo -Hu mcs mkdir -p ~/.ansible/tmp
 
       - run: pip3 install ansible ansible-lint
 
