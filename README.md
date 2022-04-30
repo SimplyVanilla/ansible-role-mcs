@@ -10,7 +10,9 @@ This will restart the server if a new version has been detected and installed.
 
 Plugin installation as well as server configuration is currently out-of-scope.
 
-## Role Variables
+## Installation
+
+### Role Variables
 
 ```
 # Minecraft release to install
@@ -29,16 +31,22 @@ mcs_jolokia_version: '1.7.1'
 mcs_heap: '10'
 ```
 
-## Dependencies
+### Dependencies
 
 _none_
 
-## Example Playbook
+### Example Playbook
 
 ```
 - hosts: servers
   roles:
     - src: simplyvanilla.mcs
+```
+
+## Usage
+
+```bash
+$ sudo systemctl status mcs
 ```
 
 ## License
