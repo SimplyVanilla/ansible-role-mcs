@@ -28,7 +28,7 @@ mcs_path: '/home/mcs/server'
 mcs_jolokia_version: '1.7.1'
 
 # JVM Heap size in GB
-mcs_heap: '10'
+mcs_heap: 10
 ```
 
 ### Dependencies
