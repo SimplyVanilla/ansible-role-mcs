@@ -13,7 +13,11 @@ jobs:
       - run: sudo rm /etc/apt/sources.list.d/google.list /etc/apt/sources.list.d/heroku.list
       - run: sudo apt remove --assume-yes --purge apparmor
       - run: sudo apt update
+
+      # prep
+      - run: mkdir -p ~/.ansible/tmp
       - run: sudo useradd -d /home/mcs -m -s /bin/bash mcs
+
       - run: pip3 install ansible ansible-lint
 
       - run: ansible --version
