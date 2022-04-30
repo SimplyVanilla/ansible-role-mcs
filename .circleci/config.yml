@@ -28,16 +28,9 @@ jobs:
       - run: ansible-lint
 
       - run: ansible-playbook tests/test.yml -i tests/inventory --connection=local -v
-      - run: cat /etc/default/mcs
-
-      - run:
-          command: sudo journalctl --no-pager --unit=mcs
-          when: on_fail
-
       - run: ansible-playbook tests/test.yml -i tests/inventory --connection=local
-      - run: cat /etc/default/mcs
 
       # debug
-      - run: sudo systemctl status mcs
+      - run: cat /etc/default/mcs
       - run: sudo journalctl --no-pager --unit=mcs
       - run: screen -p 0 -S mcs -X eval 'stuff "version"\015'
