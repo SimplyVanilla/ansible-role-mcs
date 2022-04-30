@@ -1,0 +1,11 @@
+---
+
+mcs_version: '1.18.2'
+
+mcs_user: 'mcs'
+
+mcs_path: '/home/mcs/server'
+
+mcs_jolokia_version: '1.7.1'
+
+mcs_heap: '10'

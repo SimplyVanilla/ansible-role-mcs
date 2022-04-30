@@ -1,0 +1,11 @@
+---
+
+- name: copy-over files
+  ansible.builtin.copy:
+    src: '{{ item }}'
+    dest: '{{ mcs_path }}/{{ item }}'
+    mode: 0644
+  with_items:
+    - eula.txt
+  become: yes
+  become_user: '{{ mcs_user }}'
