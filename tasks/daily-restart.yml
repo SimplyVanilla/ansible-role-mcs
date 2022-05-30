@@ -43,3 +43,6 @@
     hour: '{{ mcs_daily_restart.split(" ")[1] }}'
     job: mcs-daily-restart
   become: yes
+  when:
+    - mcs_daily_restart is defined
+    - mcs_daily_restart | length > 0
