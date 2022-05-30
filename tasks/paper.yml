@@ -13,19 +13,19 @@
 
 - name: list paper builds
   ansible.builtin.uri:
-    url: https://papermc.io/api/v2/projects/paper/versions/{{ mcs_version }}
+    url: https://api.papermc.io/v2/projects/paper/versions/{{ mcs_version }}
     return_content: yes
   register: papermc_api_builds
 
 - name: get latest paper build
   ansible.builtin.uri:
-    url: https://papermc.io/api/v2/projects/paper/versions/{{ mcs_version }}/builds/{{ papermc_api_builds.json.builds | max }}
+    url: https://api.papermc.io/v2/projects/paper/versions/{{ mcs_version }}/builds/{{ papermc_api_builds.json.builds | max }}
     return_content: yes
   register: papermc_api_build
 
 - name: download paper
   ansible.builtin.get_url:
-    url: https://papermc.io/api/v2/projects/paper/versions/{{ mcs_version }}/builds/{{ papermc_api_build.json.build }}/downloads/{{ papermc_api_build.json.downloads.application.name }}
+    url: https://api.papermc.io/v2/projects/paper/versions/{{ mcs_version }}/builds/{{ papermc_api_build.json.build }}/downloads/{{ papermc_api_build.json.downloads.application.name }}
     dest: "{{ mcs_path }}/{{ papermc_api_build.json.downloads.application.name }}"
     checksum: sha256:{{ papermc_api_build.json.downloads.application.sha256 }}
   become: yes

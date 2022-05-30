@@ -10,7 +10,7 @@ started_seconds() {
   echo "${diff}"
 }
 
-if [[ "$(started_seconds)" -lt 86400 ]]; then
+if [[ "$(started_seconds)" -lt 86300 ]]; then
   exit 0
 fi
 
