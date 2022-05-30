@@ -7,7 +7,10 @@
   become: yes
 
 - name: fetch jolokia agent
-  ansible.builtin.get_url:
-    url: https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/{{ mcs_jolokia_version }}/jolokia-jvm-{{ mcs_jolokia_version }}.jar
+  community.general.maven_artifact:
+    group_id: org.jolokia
+    artifact_id: jolokia-jvm
+    version: "{{ mcs_jolokia_version }}"
     dest: /opt/jolokia/jolokia-jvm-{{ mcs_jolokia_version }}.jar
+    mode: '0644'
   become: yes

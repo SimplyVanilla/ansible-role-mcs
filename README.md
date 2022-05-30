@@ -12,9 +12,22 @@ Plugin installation as well as server configuration is currently out-of-scope.
 
 ## Installation
 
+### Requirements
+
+In your `requirements.yml`:
+
+```yaml
+roles:
+  - src: simplyvanilla.mcs
+    version: main
+
+collections:
+  - name: community.general
+```
+
 ### Role Variables
 
-```
+```yaml
 # Minecraft release to install
 mcs_version: '1.18.2'
 
@@ -37,10 +50,11 @@ _none_
 
 ### Example Playbook
 
-```
+```yaml
 - hosts: servers
-  roles:
-    - src: simplyvanilla.mcs
+  tasks:
+    - ansible.builtin.import_role:
+        name: simplyvanilla.mcs
 ```
 
 ## Usage
