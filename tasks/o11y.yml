@@ -12,4 +12,5 @@
     artifact_id: jolokia-jvm
     version: "{{ mcs_jolokia_version }}"
     dest: /opt/jolokia/jolokia-jvm-{{ mcs_jolokia_version }}.jar
+    mode: '0644'
   become: yes

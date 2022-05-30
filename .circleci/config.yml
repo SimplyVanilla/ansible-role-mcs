@@ -42,3 +42,4 @@ jobs:
       - run: while ! sudo -u mcs screen -list mcs; do sleep 1; done
       - run: sudo -u mcs screen -p 0 -S mcs -X eval 'stuff "version"\015'
       - run: tail /home/mcs/server/logs/latest.log
+      - run: sudo systemctl stop mcs
