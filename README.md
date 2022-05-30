@@ -42,6 +42,9 @@ mcs_jolokia_version: '1.7.1'
 
 # JVM Heap size in GB
 mcs_heap: 10
+
+# set 'MM HH' of when daily restarts should occur
+mcs_daily_restart: '' 
 ```
 
 ### Dependencies

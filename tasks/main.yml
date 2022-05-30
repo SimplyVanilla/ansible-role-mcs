@@ -9,3 +9,5 @@
 - ansible.builtin.import_tasks: config.yml
 
 - ansible.builtin.import_tasks: o11y.yml
+
+- ansible.builtin.import_tasks: daily-restart.yml
