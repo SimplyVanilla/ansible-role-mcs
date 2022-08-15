@@ -29,7 +29,7 @@ collections:
 
 ```yaml
 # Minecraft release to install
-mcs_version: '1.18.2'
+mcs_version: '1.19.2'
 
 # User to run server as
 mcs_user: 'mcs'
