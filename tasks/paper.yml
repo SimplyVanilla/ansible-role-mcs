@@ -40,8 +40,8 @@
     mode: '0644'
   become: yes
   notify:
-    - mcs_reload_systemd
-    - mcs_restart
+    - Mcs_reload_systemd
+    - Mcs_restart
 
 - name: Add server.sh
   ansible.builtin.copy:
@@ -58,5 +58,5 @@
     mode: '0644'
   become: yes
   notify:
-    - mcs_reload_systemd
-    - mcs_restart
+    - Mcs_reload_systemd
+    - Mcs_restart
