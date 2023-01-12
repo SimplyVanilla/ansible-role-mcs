@@ -1,13 +1,13 @@
 ---
 
-- name: copy-over daily-restart
+- name: Copy-over daily-restart
   ansible.builtin.copy:
     src: mcs-daily-restart.sh
     dest: /usr/local/bin/mcs-daily-restart
     mode: 'a+x'
   become: yes
 
-- name: prepare crontab PATH
+- name: Prepare crontab PATH
   ansible.builtin.cron:
     cron_file: mcs_restart
     user: root
@@ -16,7 +16,7 @@
     value: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   become: yes
 
-- name: prepare crontab MAIL*
+- name: Prepare crontab MAIL*
   ansible.builtin.cron:
     cron_file: mcs_restart
     user: root
@@ -34,7 +34,7 @@
     - admin_addr_to is defined
     - admin_addr_from is defined
 
-- name: add daily-restart cronjob
+- name: Add daily-restart cronjob
   ansible.builtin.cron:
     cron_file: mcs_restart
     user: root

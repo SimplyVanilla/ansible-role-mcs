@@ -1,6 +1,6 @@
 ---
 
-- name: install prerequisites
+- name: Install prerequisites
   ansible.builtin.apt:
     name:
       - acl

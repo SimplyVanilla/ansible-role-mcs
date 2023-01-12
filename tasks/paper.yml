@@ -1,47 +1,49 @@
 ---
 
-- name: create folders
+- name: Create folders
   ansible.builtin.file:
     path: '{{ item }}'
     state: directory
     owner: '{{ mcs_user }}'
     group: '{{ mcs_user }}'
+    mode: '0755'
   with_items:
     - '{{ mcs_path }}'
     - '{{ mcs_path }}/plugins'
   become: yes
 
-- name: list paper builds
+- name: List paper builds
   ansible.builtin.uri:
     url: https://api.papermc.io/v2/projects/paper/versions/{{ mcs_version }}
     return_content: yes
   register: papermc_api_builds
 
-- name: get latest paper build
+- name: Get latest paper build
   ansible.builtin.uri:
     url: https://api.papermc.io/v2/projects/paper/versions/{{ mcs_version }}/builds/{{ papermc_api_builds.json.builds | max }}
     return_content: yes
   register: papermc_api_build
 
-- name: download paper
+- name: Download paper
   ansible.builtin.get_url:
     url: https://api.papermc.io/v2/projects/paper/versions/{{ mcs_version }}/builds/{{ papermc_api_build.json.build }}/downloads/{{ papermc_api_build.json.downloads.application.name }}
     dest: "{{ mcs_path }}/{{ papermc_api_build.json.downloads.application.name }}"
     checksum: sha256:{{ papermc_api_build.json.downloads.application.sha256 }}
+    mode: '0644'
   become: yes
   become_user: '{{ mcs_user }}'
 
-- name: add systemd service
+- name: Add systemd service
   ansible.builtin.template:
     src: mcs.service
     dest: /lib/systemd/system/mcs.service
-    mode: 0644
+    mode: '0644'
   become: yes
   notify:
-    - mcs_reload_systemd
-    - mcs_restart
+    - Mcs_reload_systemd
+    - Mcs_restart
 
-- name: add server.sh
+- name: Add server.sh
   ansible.builtin.copy:
     src: server.sh
     dest: '{{ mcs_path }}/server.sh'
@@ -49,12 +51,12 @@
   become: yes
   become_user: '{{ mcs_user }}'
 
-- name: add systemd config
+- name: Add systemd config
   ansible.builtin.template:
     src: default.conf
     dest: /etc/default/mcs
-    mode: 0644
+    mode: '0644'
   become: yes
   notify:
-    - mcs_reload_systemd
-    - mcs_restart
+    - Mcs_reload_systemd
+    - Mcs_restart

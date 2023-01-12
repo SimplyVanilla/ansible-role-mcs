@@ -1,12 +1,13 @@
 ---
 
-- name: create /opt/jolokia
+- name: Create /opt/jolokia
   ansible.builtin.file:
     name: /opt/jolokia
     state: directory
+    mode: '0755'
   become: yes
 
-- name: fetch jolokia agent
+- name: Fetch jolokia agent
   community.general.maven_artifact:
     group_id: org.jolokia
     artifact_id: jolokia-jvm
