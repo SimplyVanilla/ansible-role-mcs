@@ -13,3 +13,5 @@ mcs_heap: 10
 mcs_daily_restart: ''
 
 mcs_autostart: yes
+
+mcs_cpu_affinity: []
