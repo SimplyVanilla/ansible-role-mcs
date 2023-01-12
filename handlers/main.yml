@@ -1,11 +1,11 @@
 ---
 
-- name: mcs_reload_systemd
+- name: Mcs_reload_systemd
   ansible.builtin.systemd:
     daemon_reload: yes
   become: yes
 
-- name: mcs_restart
+- name: Mcs_restart
   ansible.builtin.systemd:
     name: mcs
     state: restarted

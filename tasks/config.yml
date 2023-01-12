@@ -1,6 +1,6 @@
 ---
 
-- name: copy-over files
+- name: Copy-over files
   ansible.builtin.copy:
     src: '{{ item }}'
     dest: '{{ mcs_path }}/{{ item }}'
