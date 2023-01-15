@@ -10,7 +10,8 @@ jobs:
       ANSIBLE_PYTHON_INTERPRETER: /usr/bin/python3
 
     steps:
-      - run: sudo rm -f /etc/apt/sources.list.d/google.list /etc/apt/sources.list.d/heroku.list
+      - run: sudo rm -f /etc/apt/sources.list.d/google* /etc/apt/sources.list.d/heroku*
+      - run: ls -lh /etc/apt/sources.list.d/
       - run: sudo apt remove --assume-yes --purge apparmor
       - run: sudo apt update
       - run: sudo apt install tree

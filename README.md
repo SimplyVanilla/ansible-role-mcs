@@ -29,7 +29,7 @@ collections:
 
 ```yaml
 # Minecraft release to install
-mcs_version: '1.19.2'
+mcs_version: '1.19.3'
 
 # User to run server as
 mcs_user: 'mcs'
@@ -38,7 +38,7 @@ mcs_user: 'mcs'
 mcs_path: '/home/mcs/server'
 
 # Jolokia version (JMX gateway)
-mcs_jolokia_version: '1.7.1'
+mcs_jolokia_version: '1.7.2'
 
 # JVM Heap size in GB
 mcs_heap: 10
