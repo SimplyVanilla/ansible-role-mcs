@@ -44,7 +44,13 @@ mcs_jolokia_version: '1.7.2'
 mcs_heap: 10
 
 # set 'MM HH' of when daily restarts should occur
-mcs_daily_restart: '' 
+mcs_daily_restart: ''
+
+# enable service
+mcs_autostart: yes
+
+# restart on detected change
+mcs_restart_on_change: yes
 ```
 
 ### Dependencies
