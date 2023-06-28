@@ -8,5 +8,7 @@
 - name: Mcs_restart
   ansible.builtin.systemd:
     name: mcs
+    state: restarted
     enabled: '{{ mcs_autostart }}'
   become: yes
+  when: mcs_restart_on_change
