@@ -6,7 +6,8 @@
 
 Ansible role that installs [PaperMC](https://papermc.io/) (a Minecraft Server Java fork) on Debian-like systems.
 
-This will restart the server if a new version has been detected and installed.
+This role will not force any restarts, as it is better for this to be controlled outside Ansible (for example through
+daily-restart cronjob).
 
 Plugin installation as well as server configuration is currently out-of-scope.
 
@@ -29,7 +30,7 @@ collections:
 
 ```yaml
 # Minecraft release to install
-mcs_version: '1.19.3'
+mcs_version: '1.20.1'
 
 # User to run server as
 mcs_user: 'mcs'
@@ -48,9 +49,6 @@ mcs_daily_restart: ''
 
 # enable service
 mcs_autostart: yes
-
-# restart on detected change
-mcs_restart_on_change: yes
 ```
 
 ### Dependencies
