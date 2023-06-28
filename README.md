@@ -6,9 +6,6 @@
 
 Ansible role that installs [PaperMC](https://papermc.io/) (a Minecraft Server Java fork) on Debian-like systems.
 
-This role will not force any restarts, as it is better for this to be controlled outside Ansible (for example through
-daily-restart cronjob).
-
 Plugin installation as well as server configuration is currently out-of-scope.
 
 ## Installation
@@ -49,6 +46,9 @@ mcs_daily_restart: ''
 
 # enable service
 mcs_autostart: yes
+
+# restart on detected change
+mcs_restart_on_change: yes
 ```
 
 ### Dependencies

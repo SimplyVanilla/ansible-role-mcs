@@ -14,4 +14,6 @@ mcs_daily_restart: ''
 
 mcs_autostart: yes
 
+mcs_restart_on_change: yes
+
 mcs_cpu_affinity: []
