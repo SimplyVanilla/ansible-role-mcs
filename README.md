@@ -4,7 +4,8 @@
 [![Ansible Quality Score](https://img.shields.io/ansible/quality/59026?style=flat-square)](https://galaxy.ansible.com/simplyvanilla/mcs)
 [![Ansible Role](https://img.shields.io/ansible/role/d/59026?style=flat-square)](https://galaxy.ansible.com/simplyvanilla/mcs)
 
-Ansible role that installs [PaperMC](https://papermc.io/) (a Minecraft Server Java fork) on Debian-like systems.
+Ansible role that installs [PaperMC](https://papermc.io/) or [Pufferfish(+)](https://pufferfish.host/)
+(Minecraft Server Java forks) on Debian-like systems.
 
 Plugin installation as well as server configuration is currently out-of-scope.
 
@@ -26,7 +27,7 @@ collections:
 ### Role Variables
 
 ```yaml
-# Fork to be use (paper, pufferfish, pufferfishplus
+# Fork to use (paper, pufferfish, pufferfishplus
 mcs_fork: paper
 
 # Minecraft release to install
