@@ -14,10 +14,10 @@
 
 - name: Download paper
   ansible.builtin.get_url:
-    url: >-
-      https://api.papermc.io/v2/projects/paper/versions
-      /{{- mcs_version -}}/builds/{{- papermc_api_build.json.build -}}
-      /downloads/{{- papermc_api_build.json.downloads.application.name -}}
+    url: "\
+      https://api.papermc.io/v2/projects/paper/versions\
+      /{{ mcs_version }}/builds/{{ papermc_api_build.json.build }}\
+      /downloads/{{ papermc_api_build.json.downloads.application.name }}"
     dest: "{{ mcs_path }}/{{ papermc_api_build.json.downloads.application.name }}"
     checksum: sha256:{{ papermc_api_build.json.downloads.application.sha256 }}
     mode: '0644'
