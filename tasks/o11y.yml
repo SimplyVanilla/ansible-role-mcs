@@ -5,7 +5,7 @@
     name: /opt/jolokia
     state: directory
     mode: '0755'
-  become: yes
+  become: true
 
 - name: Fetch jolokia agent
   community.general.maven_artifact:
@@ -14,4 +14,4 @@
     version: "{{ mcs_jolokia_version }}"
     dest: /opt/jolokia/jolokia-jvm-{{ mcs_jolokia_version }}.jar
     mode: '0644'
-  become: yes
+  become: true

@@ -1,11 +1,39 @@
 ---
 
+- name: Add systemd service
+  ansible.builtin.template:
+    src: mcs.service
+    dest: /lib/systemd/system/mcs.service
+    mode: '0644'
+  become: true
+  notify:
+    - Mcs_reload_systemd
+    - Mcs_restart
+
+- name: Add server.sh
+  ansible.builtin.copy:
+    src: server.sh
+    dest: '{{ mcs_path }}/server.sh'
+    mode: 'a+x'
+  become: true
+  become_user: '{{ mcs_user }}'
+
+- name: Add systemd config
+  ansible.builtin.template:
+    src: default.conf
+    dest: /etc/default/mcs
+    mode: '0644'
+  become: true
+  notify:
+    - Mcs_reload_systemd
+    - Mcs_restart
+
 - name: Copy-over files
   ansible.builtin.copy:
     src: '{{ item }}'
     dest: '{{ mcs_path }}/{{ item }}'
-    mode: 0644
+    mode: '0644'
   with_items:
     - eula.txt
-  become: yes
+  become: true
   become_user: '{{ mcs_user }}'

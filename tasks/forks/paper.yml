@@ -1,0 +1,25 @@
+---
+
+- name: List paper builds
+  ansible.builtin.uri:
+    url: https://api.papermc.io/v2/projects/paper/versions/{{ mcs_version }}
+    return_content: true
+  register: papermc_api_builds
+
+- name: Get latest paper build
+  ansible.builtin.uri:
+    url: https://api.papermc.io/v2/projects/paper/versions/{{ mcs_version }}/builds/{{ papermc_api_builds.json.builds | max }}
+    return_content: true
+  register: papermc_api_build
+
+- name: Download paper
+  ansible.builtin.get_url:
+    url: "\
+      https://api.papermc.io/v2/projects/paper/versions\
+      /{{ mcs_version }}/builds/{{ papermc_api_build.json.build }}\
+      /downloads/{{ papermc_api_build.json.downloads.application.name }}"
+    dest: "{{ mcs_path }}/{{ papermc_api_build.json.downloads.application.name }}"
+    checksum: sha256:{{ papermc_api_build.json.downloads.application.sha256 }}
+    mode: '0644'
+  become: true
+  become_user: '{{ mcs_user }}'

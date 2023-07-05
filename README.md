@@ -4,7 +4,8 @@
 [![Ansible Quality Score](https://img.shields.io/ansible/quality/59026?style=flat-square)](https://galaxy.ansible.com/simplyvanilla/mcs)
 [![Ansible Role](https://img.shields.io/ansible/role/d/59026?style=flat-square)](https://galaxy.ansible.com/simplyvanilla/mcs)
 
-Ansible role that installs [PaperMC](https://papermc.io/) (a Minecraft Server Java fork) on Debian-like systems.
+Ansible role that installs [PaperMC](https://papermc.io/) or [Pufferfish(+)](https://pufferfish.host/)
+(Minecraft Server Java forks) on Debian-like systems.
 
 Plugin installation as well as server configuration is currently out-of-scope.
 
@@ -26,6 +27,9 @@ collections:
 ### Role Variables
 
 ```yaml
+# Fork to use (paper, pufferfish, pufferfishplus
+mcs_fork: paper
+
 # Minecraft release to install
 mcs_version: '1.20.1'
 
@@ -45,10 +49,12 @@ mcs_heap: 10
 mcs_daily_restart: ''
 
 # enable service
-mcs_autostart: yes
+mcs_autostart: true
 
 # restart on detected change
-mcs_restart_on_change: yes
+mcs_restart_on_change: true
+
+mcs_pufferfishplus_key: ''
 ```
 
 ### Dependencies

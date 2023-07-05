@@ -3,6 +3,8 @@
 - hosts: localhost
 
   vars:
+    mcs_fork: pufferfish
+    mcs_version: '1.20'
     mcs_heap: 1
 
   tasks:

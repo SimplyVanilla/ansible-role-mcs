@@ -1,0 +1,23 @@
+---
+
+- name: Get Pufferfish builds
+  ansible.builtin.uri:
+    url: https://ci.pufferfish.host/job/Pufferfish-{{ mcs_version }}/api/json?tree=builds[number,result,artifacts[*]]
+    return_content: true
+  register: pufferfish_api_builds
+
+- name: Fail on failed Pufferfish build
+  ansible.builtin.fail:
+    msg: 'Pufferfish #{{ pufferfish_api_builds.json.builds[0].number }} is faulty.'
+  when: pufferfish_api_builds.json.builds[0].result != "SUCCESS"
+
+- name: Download Pufferfish
+  ansible.builtin.get_url:
+    url: "\
+      https://ci.pufferfish.host/job/Pufferfish-{{ mcs_version }}\
+      /{{ pufferfish_api_builds.json.builds[0].number }}/artifact/build/libs\
+      /{{ pufferfish_api_builds.json.builds[0].artifacts[0].fileName }}"
+    dest: "{{ mcs_path }}/pufferfish-{{ mcs_version }}-{{ pufferfish_api_builds.json.builds[0].number }}.jar"
+    mode: '0644'
+  become: true
+  become_user: '{{ mcs_user }}'

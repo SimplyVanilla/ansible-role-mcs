@@ -6,6 +6,18 @@
       - acl
       - python3-lxml
     state: present
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
-  become: yes
+  become: true
+
+- name: Create folders
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: directory
+    owner: '{{ mcs_user }}'
+    group: '{{ mcs_user }}'
+    mode: '0755'
+  with_items:
+    - '{{ mcs_path }}'
+    - '{{ mcs_path }}/plugins'
+  become: true

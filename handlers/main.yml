@@ -2,13 +2,13 @@
 
 - name: Mcs_reload_systemd
   ansible.builtin.systemd:
-    daemon_reload: yes
-  become: yes
+    daemon_reload: true
+  become: true
 
 - name: Mcs_restart
   ansible.builtin.systemd:
     name: mcs
     state: restarted
     enabled: '{{ mcs_autostart }}'
-  become: yes
+  become: true
   when: mcs_restart_on_change
