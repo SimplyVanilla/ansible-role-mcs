@@ -1,62 +1,25 @@
 ---
 
-- name: Create folders
-  ansible.builtin.file:
-    path: '{{ item }}'
-    state: directory
-    owner: '{{ mcs_user }}'
-    group: '{{ mcs_user }}'
-    mode: '0755'
-  with_items:
-    - '{{ mcs_path }}'
-    - '{{ mcs_path }}/plugins'
-  become: yes
-
 - name: List paper builds
   ansible.builtin.uri:
     url: https://api.papermc.io/v2/projects/paper/versions/{{ mcs_version }}
-    return_content: yes
+    return_content: true
   register: papermc_api_builds
 
 - name: Get latest paper build
   ansible.builtin.uri:
     url: https://api.papermc.io/v2/projects/paper/versions/{{ mcs_version }}/builds/{{ papermc_api_builds.json.builds | max }}
-    return_content: yes
+    return_content: true
   register: papermc_api_build
 
 - name: Download paper
   ansible.builtin.get_url:
-    url: https://api.papermc.io/v2/projects/paper/versions/{{ mcs_version }}/builds/{{ papermc_api_build.json.build }}/downloads/{{ papermc_api_build.json.downloads.application.name }}
+    url: >-
+      https://api.papermc.io/v2/projects/paper/versions
+      /{{- mcs_version -}}/builds/{{- papermc_api_build.json.build -}}
+      /downloads/{{- papermc_api_build.json.downloads.application.name -}}
     dest: "{{ mcs_path }}/{{ papermc_api_build.json.downloads.application.name }}"
     checksum: sha256:{{ papermc_api_build.json.downloads.application.sha256 }}
     mode: '0644'
-  become: yes
+  become: true
   become_user: '{{ mcs_user }}'
-
-- name: Add systemd service
-  ansible.builtin.template:
-    src: mcs.service
-    dest: /lib/systemd/system/mcs.service
-    mode: '0644'
-  become: yes
-  notify:
-    - Mcs_reload_systemd
-    - Mcs_restart
-
-- name: Add server.sh
-  ansible.builtin.copy:
-    src: server.sh
-    dest: '{{ mcs_path }}/server.sh'
-    mode: 'a+x'
-  become: yes
-  become_user: '{{ mcs_user }}'
-
-- name: Add systemd config
-  ansible.builtin.template:
-    src: default.conf
-    dest: /etc/default/mcs
-    mode: '0644'
-  become: yes
-  notify:
-    - Mcs_reload_systemd
-    - Mcs_restart

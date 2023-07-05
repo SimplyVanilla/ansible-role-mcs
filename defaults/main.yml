@@ -1,5 +1,7 @@
 ---
 
+mcs_fork: paper
+
 mcs_version: '1.20.1'
 
 mcs_user: 'mcs'
@@ -12,8 +14,10 @@ mcs_heap: 10
 
 mcs_daily_restart: ''
 
-mcs_autostart: yes
+mcs_autostart: true
 
-mcs_restart_on_change: yes
+mcs_restart_on_change: true
 
 mcs_cpu_affinity: []
+
+mcs_pufferfishplus_key: ''

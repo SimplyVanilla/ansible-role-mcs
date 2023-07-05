@@ -1,0 +1,32 @@
+---
+
+- name: Get Pufferfish+ builds
+  ansible.builtin.uri:
+    url: https://ci.pufferfish.host/job/PufferfishPlus-{{ mcs_version }}/api/json?tree=builds[number,result,artifacts[*]]
+    return_content: true
+  register: pufferfishplus_api_builds
+
+- name: Fail on failed Pufferfish+ build
+  ansible.builtin.fail:
+    msg: 'Pufferfish #{{ pufferfish_api_builds.json.builds[0].number }} is faulty.'
+  when: pufferfishplus_api_builds.json.builds[0].result != "SUCCESS"
+
+- name: Download Pufferfish+
+  ansible.builtin.get_url:
+    url: >-
+      https://ci.pufferfish.host/job/PufferfishPlus-{{- mcs_version -}}
+      /{{- pufferfishplus_api_builds.json.builds[0].number -}}
+      /artifact/pufferfishplus-1.20.jar
+    dest: "{{ mcs_path }}/pufferfishplus-{{ mcs_version }}-{{ pufferfishplus_api_builds.json.builds[0].number }}.jar"
+    mode: '0644'
+  become: true
+  become_user: '{{ mcs_user }}'
+
+- name: Add Pufferfish+ key
+  ansible.builtin.copy:
+    content: |
+      {{ mcs_pufferfishplus_key }}
+    dest: '{{ mcs_path }}/pufferfishplus.txt'
+    mode: '0640'
+  become: true
+  become_user: '{{ mcs_user }}'

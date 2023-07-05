@@ -8,6 +8,15 @@
 
 - name: Import paper.yml
   ansible.builtin.import_tasks: paper.yml
+  when: mcs_fork == 'paper'
+
+- name: Import pufferfish.yml
+  ansible.builtin.import_tasks: pufferfish.yml
+  when: mcs_fork == 'pufferfish'
+
+- name: Import pufferfishplus.yml
+  ansible.builtin.import_tasks: pufferfishplus.yml
+  when: mcs_fork == 'pufferfishplus'
 
 - name: Import config.yml
   ansible.builtin.import_tasks: config.yml

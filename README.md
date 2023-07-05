@@ -26,6 +26,9 @@ collections:
 ### Role Variables
 
 ```yaml
+# Fork to be use (paper, pufferfish, pufferfishplus
+mcs_fork: paper
+
 # Minecraft release to install
 mcs_version: '1.20.1'
 
@@ -45,10 +48,12 @@ mcs_heap: 10
 mcs_daily_restart: ''
 
 # enable service
-mcs_autostart: yes
+mcs_autostart: true
 
 # restart on detected change
-mcs_restart_on_change: yes
+mcs_restart_on_change: true
+
+mcs_pufferfishplus_key: ''
 ```
 
 ### Dependencies
