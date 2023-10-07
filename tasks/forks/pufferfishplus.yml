@@ -13,10 +13,10 @@
 
 - name: Download Pufferfish+
   ansible.builtin.get_url:
-    url: '\
+    url: "\
       https://ci.pufferfish.host/job/PufferfishPlus-{{ mcs_version }}\
       /{{ pufferfishplus_api_builds.json.builds[0].number }}\
-      /artifact/pufferfishplus-{{ mcs_version }}.jar'
+      /artifact/pufferfishplus-{{ mcs_version }}.jar"
     dest: '{{ mcs_path }}/pufferfishplus-{{ mcs_version }}-{{ pufferfishplus_api_builds.json.builds[0].number }}.jar'
     mode: '0644'
   become: true
