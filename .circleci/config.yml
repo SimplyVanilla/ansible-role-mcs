@@ -5,7 +5,7 @@ jobs:
   build:
     machine:
       # https://circleci.com/docs/2.0/configuration-reference/#machine
-      image: ubuntu-2004:202201-02
+      image: ubuntu-2204:2023.07.2
     environment:
       ANSIBLE_PYTHON_INTERPRETER: /usr/bin/python3
 
@@ -14,13 +14,11 @@ jobs:
       - run: ls -lh /etc/apt/sources.list.d/
       - run: sudo apt remove --assume-yes --purge apparmor
       - run: sudo apt update
-      - run: sudo apt install tree
+      - run: sudo apt install ansible ansible-lint tree
 
       # prep
       - run: sudo useradd -d /home/mcs -m -s /bin/bash mcs
       - run: sudo -u mcs mkdir -p /home/mcs/.ansible/tmp
-
-      - run: pip3 install ansible ansible-lint
 
       - run: ansible --version
       - run: ansible-lint --version
