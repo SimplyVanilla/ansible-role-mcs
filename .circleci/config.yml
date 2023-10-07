@@ -37,7 +37,7 @@ jobs:
       - run: cat /etc/default/mcs
       - run: sudo journalctl --no-pager --unit=mcs
       - run: sudo systemctl --no-pager -l status mcs
-      - run: tree /home/mcs/server
+      - run: sudo tree /home/mcs/server
       - run: while ! sudo -u mcs screen -list mcs; do sleep 1; done
       - run: sleep 10
       - run: sudo -u mcs screen -p 0 -S mcs -X eval 'stuff "version"\015'
