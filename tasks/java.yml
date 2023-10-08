@@ -1,10 +1,10 @@
 ---
 
-- name: Add apt-key
-  ansible.builtin.apt_key:
-    id: 6DC3636DAE534049C8B94623A122542AB04F24E3
+- name: Add apt key
+  ansible.builtin.get_url:
     url: https://apt.corretto.aws/corretto.key
-    state: present
+    dest: /etc/apt/trusted.gpg.d/corretto.asc
+    mode: '0644'
   become: true
 
 - name: Add apt-repo
