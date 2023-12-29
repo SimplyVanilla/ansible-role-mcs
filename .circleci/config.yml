@@ -29,8 +29,9 @@ jobs:
 
       # dependencies
       - run: ansible-galaxy collection install community.general
+      - run: ansible-galaxy collection list
 
-      - run: ansible-playbook tests/test.yml -i tests/inventory --connection=local -v
+      - run: ansible-playbook tests/test.yml -i tests/inventory --connection=local
       - run: ansible-playbook tests/test.yml -i tests/inventory --connection=local
 
       # debug
