@@ -5,7 +5,7 @@ jobs:
   build:
     machine:
       # https://circleci.com/docs/2.0/configuration-reference/#machine
-      image: ubuntu-2204:2023.07.2
+      image: ubuntu-2204:2023.10.1
     environment:
       ANSIBLE_PYTHON_INTERPRETER: /usr/bin/python3
 
@@ -31,7 +31,7 @@ jobs:
       - run: ansible-galaxy collection install community.general
       - run: ansible-galaxy collection list
 
-      - run: ansible-playbook tests/test.yml -i tests/inventory --connection=local
+      - run: ansible-playbook tests/test.yml -i tests/inventory --connection=local -vvv
       - run: ansible-playbook tests/test.yml -i tests/inventory --connection=local
 
       # debug
