@@ -46,3 +46,16 @@
   when:
     - mcs_daily_restart is defined
     - mcs_daily_restart | length > 0
+
+- name: Add daily-logrotate cronjob
+  ansible.builtin.cron:
+    cron_file: mcs_restart
+    user: root
+    name: run daily logrotate
+    minute: '{{ mcs_daily_restart.split(" ")[0] }}'
+    hour: '{{ mcs_daily_restart.split(" ")[1] }}'
+    job: find {{ mcs_path }}/logs/ -name "*.log.gz" -type f -mtime +21 -delete
+  become: true
+  when:
+    - mcs_daily_restart is defined
+    - mcs_daily_restart | length > 0
