@@ -37,10 +37,3 @@
     - eula.txt
   become: true
   become_user: '{{ mcs_user }}'
-
-- name: Upsert mcs logrotate
-  ansible.builtin.template:
-    src: logrotate.conf
-    dest: /etc/logrotate.d/mcs
-    mode: '0644'
-  become: true
