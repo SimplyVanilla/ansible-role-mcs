@@ -2,7 +2,7 @@
 
 mcs_fork: paper
 
-mcs_version: '1.20.1'
+mcs_version: '1.20.4'
 
 mcs_user: 'mcs'
 
@@ -21,3 +21,5 @@ mcs_restart_on_change: true
 mcs_cpu_affinity: []
 
 mcs_pufferfishplus_key: ''
+
+mcs_use_hilltty_flags: false

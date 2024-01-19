@@ -4,7 +4,7 @@ set -eo pipefail
 
 
 start() {
-  exec screen -dmS mcs bash -c "${JAVA_HOME}/bin/java ${JAVA_OPTS} -jar ${JAR} nogui"
+  exec screen -dmS mcs bash -c "${JAVA_HOME}/bin/java -server ${JAVA_OPTS} -jar ${JAR} nogui"
 }
 
 stop() {
