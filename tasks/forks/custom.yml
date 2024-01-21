@@ -1,0 +1,9 @@
+---
+
+- name: Download custom fork
+  ansible.builtin.get_url:
+    url: '{{ mcs_fork_url }}'
+    dest: "{{ mcs_path }}/{{ mcs_fork_url | basename }}"
+    mode: '0644'
+  become: true
+  become_user: '{{ mcs_user }}'
