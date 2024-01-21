@@ -7,7 +7,7 @@
   ansible.builtin.import_tasks: java.yml
 
 - name: Include fork
-  ansible.builtin.import_tasks: forks/{{ mcs_fork }}.yml
+  ansible.builtin.include_tasks: forks/{{ mcs_fork }}.yml
 
 - name: Import config.yml
   ansible.builtin.import_tasks: config.yml
