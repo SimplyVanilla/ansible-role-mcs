@@ -10,7 +10,7 @@
 - name: Fetch jolokia agent
   community.general.maven_artifact:
     group_id: org.jolokia
-    artifact_id: jolokia-jvm
+    artifact_id: jolokia-agent-jvm
     version: "{{ mcs_jolokia_version }}"
     dest: /opt/jolokia/jolokia-jvm-{{ mcs_jolokia_version }}.jar
     mode: '0644'

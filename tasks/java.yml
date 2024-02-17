@@ -15,14 +15,14 @@
 
 - name: Install java
   ansible.builtin.apt:
-    name: java-17-amazon-corretto-jdk
+    name: java-21-amazon-corretto-jdk
     state: present
     update_cache: true
     cache_valid_time: 3600
   become: true
 
 - name: Get jname
-  ansible.builtin.shell: set -eo pipefail; dirname "$(dirname "$(dpkg -L 'java-17-amazon-corretto-jdk' | grep -e bin/java$ | grep -v jre | head -n1)")"
+  ansible.builtin.shell: set -eo pipefail; dirname "$(dirname "$(dpkg -L 'java-21-amazon-corretto-jdk' | grep -e bin/java$ | grep -v jre | head -n1)")"
   args:
     executable: /bin/bash
   changed_when: false

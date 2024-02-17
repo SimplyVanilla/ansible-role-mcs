@@ -1,7 +1,7 @@
 ---
 
 - name: Copy-over daily-restart
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: mcs-daily-restart.sh
     dest: /usr/local/bin/mcs-daily-restart
     mode: a+x
@@ -54,7 +54,7 @@
     name: run daily logrotate
     minute: '{{ mcs_daily_restart.split(" ")[0] }}'
     hour: '{{ mcs_daily_restart.split(" ")[1] }}'
-    job: find {{ mcs_path }}/logs/ -name "*.log.gz" -type f -mtime +21 -delete
+    job: find {{ mcs_path }}/logs/ -name "*.log.gz" -type f -mtime +14 -delete
   become: true
   when:
     - mcs_daily_restart is defined
