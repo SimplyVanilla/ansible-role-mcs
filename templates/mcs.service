@@ -13,7 +13,7 @@ Restart=always
 RestartSec=5s
 Type=forking
 
-ExecStart={{ mcs_path }}/server.sh start
+ExecStart=${JAVA_HOME}/bin/java -server ${JAVA_OPTS} -jar ${JAR} nogui
 ExecStop={{ mcs_path }}/server.sh stop
 
 {% if mcs_cpu_affinity is defined and mcs_cpu_affinity|length > 0 %}
