@@ -22,6 +22,6 @@ mcs_cpu_affinity: []
 
 mcs_pufferfishplus_key: ''
 
-mcs_use_hilltty_flags: false
+mcs_flags: zgc
 
 mcs_use_large_pages: false

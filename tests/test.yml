@@ -6,7 +6,7 @@
     mcs_fork: pufferfish
     mcs_version: '1.20'
     mcs_heap: 1
-    mcs_use_hilltty_flags: true
+    mcs_flags: zgc
 
   tasks:
     - name: Import project role
