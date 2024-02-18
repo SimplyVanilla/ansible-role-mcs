@@ -37,19 +37,19 @@ jobs:
       # debug
       - run:
           command: javac MaxHeapSize.java && java MaxHeapSize
-          when: on_fail
+          when: always
       - run:
           command: cat /etc/default/mcs
-          when: on_fail
+          when: always
       - run:
           command: sudo journalctl --no-pager --unit=mcs
-          when: on_fail
+          when: always
       - run:
           command: sudo systemctl --no-pager -l status mcs
-          when: on_fail
+          when: always
       - run:
           command: sudo tree /home/mcs/server
-          when: on_fail
+          when: always
 
       - run: while ! sudo -u mcs screen -list mcs; do sleep 1; done
       - run: sleep 10
@@ -58,6 +58,6 @@ jobs:
 
       - run:
           command: sudo cat /home/mcs/server/logs/latest.log
-          when: on_fail
+          when: always
 
       - run: sudo systemctl stop mcs
