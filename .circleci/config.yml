@@ -35,7 +35,6 @@ jobs:
       - run: ansible-playbook tests/test.yml -i tests/inventory --connection=local
 
       # debug
-      - run: sleep 1800
       - run: cat /etc/default/mcs
       - run: sudo journalctl --no-pager --unit=mcs
       - run: sudo systemctl --no-pager -l status mcs
