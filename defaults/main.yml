@@ -8,7 +8,7 @@ mcs_user: 'mcs'
 
 mcs_path: '/home/mcs/server'
 
-mcs_jolokia_version: '1.7.2'
+mcs_jolokia_version: '2.0.1'
 
 mcs_heap: 10
 
@@ -22,4 +22,6 @@ mcs_cpu_affinity: []
 
 mcs_pufferfishplus_key: ''
 
-mcs_use_hilltty_flags: false
+mcs_flags: zgc
+
+mcs_use_large_pages: false

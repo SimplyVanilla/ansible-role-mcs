@@ -5,7 +5,7 @@ jobs:
   build:
     machine:
       # https://circleci.com/docs/2.0/configuration-reference/#machine
-      image: ubuntu-2204:2023.10.1
+      image: ubuntu-2204:2024.01.1
     environment:
       ANSIBLE_PYTHON_INTERPRETER: /usr/bin/python3
 
@@ -35,13 +35,29 @@ jobs:
       - run: ansible-playbook tests/test.yml -i tests/inventory --connection=local
 
       # debug
-      - run: cat /etc/default/mcs
-      - run: sudo journalctl --no-pager --unit=mcs
-      - run: sudo systemctl --no-pager -l status mcs
-      - run: sudo tree /home/mcs/server
+      - run:
+          command: javac MaxHeapSize.java && java MaxHeapSize
+          when: always
+      - run:
+          command: cat /etc/default/mcs
+          when: always
+      - run:
+          command: sudo journalctl --no-pager --unit=mcs
+          when: always
+      - run:
+          command: sudo systemctl --no-pager -l status mcs
+          when: always
+      - run:
+          command: sudo tree /home/mcs/server
+          when: always
+
       - run: while ! sudo -u mcs screen -list mcs; do sleep 1; done
       - run: sleep 10
       - run: sudo -u mcs screen -p 0 -S mcs -X eval 'stuff "version"\015'
       - run: sleep 2
-      - run: sudo cat /home/mcs/server/logs/latest.log
+
+      - run:
+          command: sudo cat /home/mcs/server/logs/latest.log
+          when: always
+
       - run: sudo systemctl stop mcs

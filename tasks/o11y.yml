@@ -7,11 +7,9 @@
     mode: '0755'
   become: true
 
-- name: Fetch jolokia agent
-  community.general.maven_artifact:
-    group_id: org.jolokia
-    artifact_id: jolokia-jvm
-    version: "{{ mcs_jolokia_version }}"
-    dest: /opt/jolokia/jolokia-jvm-{{ mcs_jolokia_version }}.jar
-    mode: '0644'
+- name: Install jolokia agent
+  ansible.builtin.apt:
+    deb: https://repo1.maven.org/maven2/org/jolokia/jolokia-agent-jvm/{{ mcs_jolokia_version }}/jolokia-agent-jvm-{{ mcs_jolokia_version }}.deb
+    update_cache: true
+    cache_valid_time: 3600
   become: true
