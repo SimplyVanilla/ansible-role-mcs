@@ -5,7 +5,7 @@ jobs:
   build:
     machine:
       # https://circleci.com/docs/2.0/configuration-reference/#machine
-      image: ubuntu-2204:2023.10.1
+      image: ubuntu-2204:2024.01.1
     environment:
       ANSIBLE_PYTHON_INTERPRETER: /usr/bin/python3
 
@@ -36,7 +36,7 @@ jobs:
 
       # debug
       - run:
-          command: "echo 'public class MaxHeapSize { public static void main(String[] args) { System.out.println(\"Max heap size: \" + Runtime.getRuntime().maxMemory() / (1024 * 1024) + \" MB\"); } }' > MaxHeapSize.java && javac MaxHeapSize.java && java MaxHeapSize && rm MaxHeapSize.java MaxHeapSize.class"
+          command: javac MaxHeapSize.java && java MaxHeapSize
           when: on_fail
       - run:
           command: cat /etc/default/mcs
