@@ -13,7 +13,7 @@ Restart=always
 RestartSec=5s
 Type=forking
 
-ExecStart=/usr/lib/jvm/java-21-amazon-corretto/bin/java -server ${JAVA_OPTS} -jar ${JAR} nogui
+ExecStart=/usr/lib/jvm/java-21-amazon-corretto/bin/java -server "${JAVA_OPTS}" -jar ${JAR} nogui
 ExecStop={{ mcs_path }}/server.sh stop
 
 {% if mcs_cpu_affinity is defined and mcs_cpu_affinity|length > 0 %}
