@@ -5,7 +5,7 @@ jobs:
   build:
     machine:
       # https://circleci.com/docs/2.0/configuration-reference/#machine
-      image: ubuntu-2204:2024.01.1
+      image: ubuntu-2204:2023.10.1
     environment:
       ANSIBLE_PYTHON_INTERPRETER: /usr/bin/python3
 
@@ -28,16 +28,13 @@ jobs:
       - run: ansible-lint
 
       # dependencies
-      - run: ansible-galaxy collection install community.general:7.5.2
+      - run: ansible-galaxy collection install community.general:8.3.0
       - run: ansible-galaxy collection list
 
       - run: ansible-playbook tests/test.yml -i tests/inventory --connection=local
       - run: ansible-playbook tests/test.yml -i tests/inventory --connection=local
 
       # debug
-      - run:
-          command: javac MaxHeapSize.java && java MaxHeapSize
-          when: always
       - run:
           command: cat /etc/default/mcs
           when: always

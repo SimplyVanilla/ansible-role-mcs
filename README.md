@@ -19,9 +19,6 @@ In your `requirements.yml`:
 roles:
   - src: simplyvanilla.mcs
     version: main
-
-collections:
-  - name: community.general
 ```
 
 ### Role Variables

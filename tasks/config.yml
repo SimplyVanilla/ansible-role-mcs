@@ -14,7 +14,7 @@
   ansible.builtin.copy:
     src: server.sh
     dest: '{{ mcs_path }}/server.sh'
-    mode: 'a+x'
+    mode: a+x
   become: true
   become_user: '{{ mcs_user }}'
 
