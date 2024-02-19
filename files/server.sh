@@ -26,7 +26,6 @@ stop() {
     echo "waiting..."
     sleep 1
   done
-
 }
 
 case "${1}" in
