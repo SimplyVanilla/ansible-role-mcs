@@ -16,7 +16,7 @@
   ansible.builtin.import_tasks: o11y.yml
   when:
     - mcs_jolokia_version is defined
-    - mcs_jolokia_version != ''
+    - mcs_jolokia_version
 
 - name: Import daily-restart.yml
   ansible.builtin.import_tasks: daily-restart.yml
