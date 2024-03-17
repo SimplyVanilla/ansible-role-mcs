@@ -23,3 +23,7 @@ mcs_pufferfishplus_key: ''
 mcs_flags: zgc
 
 mcs_use_large_pages: false
+
+mcs_restart_threshold: 18000
+
+velocity_restart_threshold: 72000
